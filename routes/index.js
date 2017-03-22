@@ -20,7 +20,7 @@ router.post('/api/speedTest', function(req, res, next) {
   var url = req.body.url;
   //res.redirect('/test/' + id);
   pageInsights(url, function(body) {
-    res.render('results', {title: 'ResultsPage', results: body});
+    res.json(body);
   });
 });
 
