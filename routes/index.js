@@ -1,22 +1,28 @@
 var express = require('express');
 var router = express.Router();
 var pageInsights = require('../public/javascripts/pagespeedinsights.js')
+var path = require('path');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', null);
+  //res.render('index', null);
+  //converted to angular html serving
+  var thePath = path.join(__dirname, '../', 'views', 'index.html')
+  console.log(thePath);
+  res.sendFile(thePath);
 });
 
-router.get('/test/:id', function(req, res, next) {
-  res.render('test', {title: 'Express', output: req.params.id});
+router.get('/data', function(req,res){
+	res.json(["1", "2", "3", "4", "5"]);
 });
 
-router.post('/test/submit', function(req, res, next) {
-  var id = req.body.id;
-  console.log(id);
+router.post('/api/speedTest', function(req, res, next) {
+  var url = req.body.url;
   //res.redirect('/test/' + id);
-  pageInsights(id, function(body) {
+  pageInsights(url, function(body) {
     res.render('results', {title: 'ResultsPage', results: body});
   });
 });
+
+
 module.exports = router;
