@@ -12,10 +12,6 @@ router.get('/', function(req, res, next) {
   res.sendFile(thePath);
 });
 
-router.get('/data', function(req,res){
-	res.json(["1", "2", "3", "4", "5"]);
-});
-
 router.post('/api/speedTest', function(req, res, next) {
   var url = req.body.url;
   //res.redirect('/test/' + id);

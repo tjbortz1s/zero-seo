@@ -4,24 +4,27 @@
     <title>Angular and Node</title>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
     <script src="/javascripts/app.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
     <div ng-controller="myController">
-      <form ng-submit="submit()">
-        <input type="text" ng-model="text" name="text">
-        <input type="submit" value="submit">
-      </form>
+      <div class="entryBox" ng-Show="showEntryInfo">
+        <h1 >SEO-Site</h1>
+        <form ng-submit="submit()">
+          <input type="text" ng-model="text" name="text">
+          <input type="submit" value="submit">
+        </form>
+      </div>
+
+      <h1 ng-Hide="showEntryInfo">PageSpeed Results</h1>
       <div ng-repeat="(key, item) in jsonfile.formattedResults.ruleResults">
         {{ key }} <br>
-        <ul ng-repeat="item2 in item">
-            <li>{{ item2 }}</li>
+        <ul ng-repeat="(key2, item2) in item">
+            <li><b>{{ key2 }}:</b>  {{ item2 }}</li>
         </ul>
         <br>
       </div>
-      <!-- <p>{{ jsonfile }}</p> -->
-      <ul ng-repeat="item in data">
-	       <li>{{ item }}</li>
-     </ul>
+
     </div>
   </body>
 </html>
