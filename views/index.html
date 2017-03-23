@@ -18,11 +18,21 @@
 
       <h1 ng-Hide="showEntryInfo">PageSpeed Results</h1>
       <div ng-repeat="(key, item) in jsonfile.formattedResults.ruleResults">
-        {{ key }} <br>
-        <ul ng-repeat="(key2, item2) in item">
+        <h3>{{ item.localizedRuleName }}</h3> 
+        <!-- localizedRuleName, ruleImpact, groups(array)-->
+        <h4>Rule Impact: {{ item.ruleImpact }}</h4>
+        <!--<h4>Groups</h4>
+        <ul ng-repeat="item2 in item.groups">
+          <li>{{ item2 }}</li>
+        </ul> -->
+        <h4>Summary</h4>
+        <p>{{item.summary.format}}</p>
+        <br>
+        <!--<h5>Arguments</h5>
+        <ul ng-repeat="(key2, item2) in item.summary.args">
             <li><b>{{ key2 }}:</b>  {{ item2 }}</li>
         </ul>
-        <br>
+        <br> -->
       </div>
 
     </div>

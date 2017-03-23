@@ -8,7 +8,7 @@ app.controller('myController', function($scope, $http) {
   $scope.submit = function() {
     if($scope.text) {
       $scope.showEntryInfo = false;
-      var request = $http.post('/api/speedTest', {'url': $scope.text});
+      var request = $http.post('/api/speedTest', {'url': $scope.text, ismobile: false});
       request.success(function(data){
         $scope.jsonfile = data;
       });

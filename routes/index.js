@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var pageInsights = require('../public/javascripts/pagespeedinsights.js')
+var pageInsightsDesktop = require('../public/javascripts/pagespeeddesktop');
+var pageInsightsMobile = require('../public/javascripts/pagespeedmobile');
 var path = require('path');
 
 /* GET home page. */
@@ -14,10 +15,19 @@ router.get('/', function(req, res, next) {
 
 router.post('/api/speedTest', function(req, res, next) {
   var url = req.body.url;
-  //res.redirect('/test/' + id);
-  pageInsights(url, function(body) {
-    res.json(body);
-  });
+  var ismobile = req.body.ismobile;
+
+  if(ismobile){
+    pageInsightsMobile(url, function(body) {
+      res.json(body);
+    });
+  }
+  if(!ismobile){
+    //res.redirect('/test/' + id);
+    pageInsightsDesktop(url, function(body) {
+      res.json(body);
+    });
+  }
 });
 
 
