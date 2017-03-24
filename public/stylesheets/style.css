@@ -10,20 +10,21 @@ h1 {
   text-align: center;
 }
 
-.entryBox {
-  text-align: center;
-}
 
 a {
   color: #00B7FF;
+}
+
+.entryBox {
+  text-align: center;
 }
 
 .loader {
     position: absolute;
     left: 46.5%;
     top: 20%;
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border: 16px solid #E3E3E3; /* Light grey */
+    /*Red for increased speed*/
     border-radius: 50%;
     width: 120px;
     height: 120px;
