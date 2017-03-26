@@ -4,13 +4,23 @@ app.controller('myController', function($scope, $http) {
   $scope.text = "https://www.google.com";
   $scope.jsonfile = "";
   $scope.showEntryInfo = true;
+
   $scope.showLoader = false;
+  $scope.redirectsToHTTPS = true;
 
   $scope.submit = function() {
     if($scope.text) {
       $scope.showEntryInfo = false;
       $scope.showLoader = true;
       var request = $http.post('/api/speedTest', {'url': $scope.text, ismobile: false});
+      var testReq = $http.post('/api/runChecks', {'url': $scope.text});
+      testReq.success(function(data){
+        var x = data.html;
+        var y = data.redirected;
+        console.log(y);
+        $scope.pagehtml = x;
+        $scope.redirectsToHTTPS = y;
+      });
       //need a few different variables and actions
       //one, the arguments need to be used in the descriptions, links and so on
       //should be turned into html? or something of that sort
@@ -29,9 +39,9 @@ app.controller('myController', function($scope, $http) {
         var tempObject = [];
 
       });*/
-
       console.log("GOT HERE GUYA");
       //this should all still work
+
 
       request.success(function(data){
         $scope.jsonfile = data;

@@ -8,6 +8,7 @@
   </head>
   <body>
     <div ng-controller="myController">
+      <p>{{ pagehtml }}</p>
       <div class="entryBox" ng-Show="showEntryInfo">
         <h1 >SEO-Site</h1>
         <form ng-submit="submit()">
@@ -20,6 +21,7 @@
 
       <h1 ng-Hide="showEntryInfo">PageSpeed Results</h1>
       <div class="loader" ng-Show="showLoader"></div>
+      <p class="warning" ng-Hide="redirectsToHTTPS">Site did not redirect to HTTPS</p>
       <div ng-repeat="(key, item) in jsonfile.formattedResults.ruleResults">
         <h3>{{ item.localizedRuleName }}</h3>
         <!-- localizedRuleName, ruleImpact, groups(array)-->
