@@ -1,40 +1,41 @@
-var rules = require('./rules/ruleHub.js');
-var apis = require('./apis/apiHub.js');
+var rules = require('./rules/rulehub.js');
+var apis = require('./apis/apihub.js');
 var httpsRequest = require('./httpsrequest.js');
+var _ = require('underscore');
 
 var check = function(url, callback){
-  console.log("RUNINGINGINGING");
-  var https = false;
+  var redirected = false;
   var html = '';
-  //return null;
+  var rulesresult = ' ';
+  var apisresult = ' ';
+
+  var returnValues = function(){
+    console.log("SENDING OUT THE RNESULTSOF");
+    console.log(apisresult);
+    var returnobj = {redirected: redirected, rules: rulesresult, apis: apisresult, html: html};
+    console.log("GOTTA GOTTA HERE BUDDY");
+    callback(returnobj);
+  };
+  var finished = _.after(2, returnValues);
+  console.log("RUNINGINGINGING");
+
   httpsRequest(url, function(data){
-    //var redirected = data.redirected;
-    //var html = data.html;
+    redirected = data.redirected;
+    html = data.html;
+    rulesresult = rules(html, function(results){
+      rulesresult = results;
+      finished();
+    });
+    apisresult = apis(url, function(results){
+      apisresult = results;
+      finished();
+    });
     //console.log('is data here?');
     //console.log(https);
     //console.log(html);
-    callback(data);
+
+    //callback(data);
   });
-
-
-  /*var rulesresult = rules(html);
-  var apisresult = api(url);
-
-  var returnValues = function(){
-    var returnobj = {https: https, rules: rulesresult, apis: apisresult};
-    return returnobj;
-  };
-
-  var rulesDone = false;
-  var apiDone = false;
-  var finished = _.after(2, returnValues);
-  rules.on('exit', function(){
-    finished();
-  });
-  api.on('exit', function(){
-    finished();
-  });*/
-
 
 }
 

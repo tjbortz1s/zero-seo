@@ -14,10 +14,18 @@ router.get('/', function(req, res, next) {
   res.sendFile(thePath);
 });
 
+router.get('/images/:image', function(req, res, next){
+  var imagename = req.params.image;
+  var imagepath = path.join(__dirname, '../', 'public', 'images', 'imagename')
+  res.sendFile(imagepath);
+});
+
 router.post('/api/runChecks', function(req, res, next) {
     var url = req.body.url;
-    var test = check(url, function(data){
-      res.send(data);
+    check(url, function(data){
+      console.log('GETTING API RESULTS FOR DESKTOPSPEED');
+      console.log(data.apis.desktopspeed);
+      res.json(data);
     });
 });
 

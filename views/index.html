@@ -8,9 +8,9 @@
   </head>
   <body>
     <div ng-controller="myController">
-      <p>{{ pagehtml }}</p>
-      <div class="entryBox" ng-Show="showEntryInfo">
-        <h1 >SEO-Site</h1>
+      <img class="thumbnail" src='/images/logo.png' />
+      <div class="entryBox" ng-Show="showentrybox">
+        <h1 class="center">SEO-Site</h1>
         <form ng-submit="submit()">
           <input type="text" ng-model="text" name="text">
           <input type="submit" value="submit">
@@ -18,27 +18,46 @@
       </div>
 
 
+      <!-- Here is where the results are displayed-->
+      <div class="ResultsDisplay">
 
-      <h1 ng-Hide="showEntryInfo">PageSpeed Results</h1>
-      <div class="loader" ng-Show="showLoader"></div>
-      <p class="warning" ng-Hide="redirectsToHTTPS">Site did not redirect to HTTPS</p>
-      <div ng-repeat="(key, item) in jsonfile.formattedResults.ruleResults">
-        <h3>{{ item.localizedRuleName }}</h3>
-        <!-- localizedRuleName, ruleImpact, groups(array)-->
-        <h4>Rule Impact: {{ item.ruleImpact }}</h4>
-        <!--<h4>Groups</h4>
-        <ul ng-repeat="item2 in item.groups">
-          <li>{{ item2 }}</li>
-        </ul> -->
-        <h4>Summary</h4>
-        <p>{{item.summary.format}}</p>
-        <br>
-        <!--<h5>Arguments</h5>
-        <ul ng-repeat="(key2, item2) in item.summary.args">
-            <li><b>{{ key2 }}:</b>  {{ item2 }}</li>
-        </ul>
-        <br> -->
-      </div>
+        <div class="loader" ng-Show="showloader"></div>
+
+        <!--Various Warnings -->
+        <p class="warning" ng-Hide="redirectstohttps">Site did not redirect to HTTPS</p>
+
+        <!--Section for rules results, shows HTML for now-->
+        <!--Header - loader - displayinfo -->
+        <h1 ng-click="rulesExpand()" ng-Show="showrulesinfo">Rule Results</h1>
+        <div ng-Show="showruleresults">
+          <p class="results">{{ pagehtml }}</p>
+        </div>
+
+        <!-- Section for SpeedPageInsights Info-->
+        <!--Header - loader - (div)displayinfo -->
+        <h1 ng-click="speedExpand()" ng-Show="showspeedinfo">PageSpeed Results</h1>
+        <div ng-Show="showspeedresults">
+          <div ng-repeat="(key, item) in jsonfile.formattedResults.ruleResults">
+            <h3>{{ item.localizedRuleName }}</h3>
+            <!-- localizedRuleName, ruleImpact, groups(array)-->
+            <h4 class="results">Rule Impact: {{ item.ruleImpact }}</h4>
+            <!--<h4>Groups</h4>
+            <ul ng-repeat="item2 in item.groups">
+              <li>{{ item2 }}</li>
+            </ul> -->
+            <h4 class="results">Summary</h4>
+            <p class="results">{{item.summary.format}}</p>
+            <br>
+            <!--<h5>Arguments</h5>
+            <ul ng-repeat="(key2, item2) in item.summary.args">
+                <li><b>{{ key2 }}:</b>  {{ item2 }}</li>
+            </ul>
+            <br> -->
+          </div><!--ng-repeat div element-->
+        </div><!--speedtestresults-->
+
+
+      </div> <!--ResultsDisplay-->
 
     </div>
   </body>

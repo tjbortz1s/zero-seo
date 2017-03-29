@@ -1,10 +1,10 @@
 var testRule = require('./testRule.js');
 
-var checkRules = function(htmlString){
+var checkRules = function(htmlString, callback){
   var testruleresults = testRule(htmlString);
   var results = {test: testruleresults};
 
-  return results;
+  callback(results);
 };
 
 module.exports = checkRules;
