@@ -8,6 +8,7 @@
   </head>
   <body>
     <div ng-controller="myController">
+      <div class="body">
       <img class="thumbnail" src='/images/logo.png' />
       <div class="entryBox" ng-Show="showentrybox">
         <h1 class="center">SEO-Site</h1>
@@ -56,9 +57,12 @@
           </div><!--ng-repeat div element-->
         </div><!--speedtestresults-->
 
-
+        <!--Iframe for displaying structure data test-->
       </div> <!--ResultsDisplay-->
+      <h1>GoogleDataStructuresTest</h1>
+    </div>
 
+      <iframe class="myiframe" name={{framename}} ng-src="{{sourcetext | trusted}}" frameborder="0"></iframe>
     </div>
   </body>
 </html>

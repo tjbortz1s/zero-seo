@@ -1,5 +1,12 @@
 var app = angular.module('seoApp', []);
 
+
+app.filter('trusted', ['$sce', function($sce){
+  return function(url){
+    return $sce.trustAsResourceUrl(url);
+  };
+}]);
+
 app.controller('myController', function($scope, $http) {
   $scope.text = "https://www.google.com";
   $scope.jsonfile = "";
@@ -26,6 +33,9 @@ app.controller('myController', function($scope, $http) {
     $scope.showspeedresults = !($scope.showspeedresults);
   };
 
+  var getSDTUrl = function(url){
+    return "https://search.google.com/structured-data/testing-tool#url=" + url;
+  };
   //on button click to start up the process
   $scope.submit = function() {
     //if a URL was input
@@ -38,6 +48,10 @@ app.controller('myController', function($scope, $http) {
       $scope.showrulesinfo = true;
       $scope.showentryinfo = true;
       $scope.showloader = true;
+
+      console.log("SETTING SOURCE TEXT");
+      $scope.framename = 'test';
+      $scope.sourcetext = getSDTUrl($scope.text.slice(8));
 
       //begin the API requests
       //var request = $http.post('/api/speedTest', {'url': $scope.text, ismobile: false});
