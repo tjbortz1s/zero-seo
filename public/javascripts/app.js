@@ -1,12 +1,5 @@
 var app = angular.module('seoApp', []);
 
-
-app.filter('trusted', ['$sce', function($sce){
-  return function(url){
-    return $sce.trustAsResourceUrl(url);
-  };
-}]);
-
 app.controller('myController', function($scope, $http) {
   $scope.text = "https://www.google.com";
   $scope.jsonfile = "";
@@ -33,9 +26,6 @@ app.controller('myController', function($scope, $http) {
     $scope.showspeedresults = !($scope.showspeedresults);
   };
 
-  var getSDTUrl = function(url){
-    return "https://search.google.com/structured-data/testing-tool#url=" + url;
-  };
   //on button click to start up the process
   $scope.submit = function() {
     //if a URL was input
@@ -45,63 +35,56 @@ app.controller('myController', function($scope, $http) {
       //show the headers
       //and the loaders
       $scope.showentrybox = false;
-      $scope.showrulesinfo = true;
       $scope.showentryinfo = true;
       $scope.showloader = true;
 
       console.log("SETTING SOURCE TEXT");
       $scope.framename = 'test';
-      $scope.sourcetext = getSDTUrl($scope.text.slice(8));
 
       //begin the API requests
-      //var request = $http.post('/api/speedTest', {'url': $scope.text, ismobile: false});
       var testReq = $http.post('/api/runChecks', {'url': $scope.text});
       //request for the rules
       testReq.success(function(data){
-        var x = data.html;
-        var y = data.redirected;
-        console.log(y);
+
+        $scope.pagehtml = data.html;
+        $scope.ruleresults = data.rules;
+
+        var passedrules = 0;
+        for(var object in data.rules){
+          var trueobject = data.rules[object];
+          if(trueobject.passed){
+            passedrules++;
+          }
+        }
+        $scope.totalrlues = data.rules.length;
+        $scope.passedrules = passedrules;
+
         $scope.showrulesinfo = true;
-        $scope.pagehtml = x;
-        $scope.redirectstohttps = y;
+
+
+        $scope.redirectstohttps = data.redirected;
 
         //api result?
 
+        //get number of issues
+
+        var numissues = 0;
+        var rules = data.apis.desktopspeed.formattedResults.ruleResults;
+
+        for(var object in rules){
+          var trueobj = rules[object];
+          if(trueobj.ruleImpact > 0){
+            numissues++;
+          }
+        };
+
+        $scope.numissues = numissues;
 
         $scope.showspeedinfo = true;
         $scope.jsonfile = data.apis.desktopspeed;
         $scope.showloader = false;
       });
-      //need a few different variables and actions
-      //one, the arguments need to be used in the descriptions, links and so on
-      //should be turned into html? or something of that sort
 
-      //two, there should be a few variables
-      //overall score
-      //total score
-      //amount each group contributes to score
-
-      //make it so that the groupScores shows the total scores for each group.
-      /*$scope.groupScores = data.ruleGroups;
-      $scope.pageStats = data.pageStats;
-      //{{beginlink}} and {{endlink}} should be replaced with <href> tags as is appropriate
-      var formattedArray = [];
-      data.formattedResults.ruleResults.forEach(function(ruleData){
-        var tempObject = [];
-
-      });*/
-      //this should all still work
-
-      //request for the speedtest API
-      request.success(function(data){
-        $scope.showspeedinfo = true;
-        $scope.jsonfile = data;
-        $scope.showloader = false;
-      });
-      request.error(function(data) {
-        console.log('Error ' + data);
-        $scope.showloader = false;
-      });
       $scope.text = "";
     }
   };

@@ -30,13 +30,20 @@
         <!--Section for rules results, shows HTML for now-->
         <!--Header - loader - displayinfo -->
         <h1 ng-click="rulesExpand()" ng-Show="showrulesinfo">Rule Results</h1>
+        <p ng-click="rulesExpand()" ng-Show="showrulesinfo">Passed: {{ passedrules }}/{{ totalrlues }}</p>
         <div ng-Show="showruleresults">
-          <p class="results">{{ pagehtml }}</p>
+          <div ng-repeat="item in ruleresults">
+            <h3>{{ item.name }}</h3>
+            <h4>Did Rule Pass? : {{ item.passed }}</h4>
+            <h4>Description:</h4>
+            <p class="results">{{ item.description }}</p>
+          </div>
         </div>
 
         <!-- Section for SpeedPageInsights Info-->
         <!--Header - loader - (div)displayinfo -->
         <h1 ng-click="speedExpand()" ng-Show="showspeedinfo">PageSpeed Results</h1>
+        <p ng-click="speedExpand()" ng-Show="showspeedinfo">Score: {{ jsonfile.ruleGroups.SPEED.score }}/100 Issues: {{ numissues }}</p>
         <div ng-Show="showspeedresults">
           <div ng-repeat="(key, item) in jsonfile.formattedResults.ruleResults">
             <h3>{{ item.localizedRuleName }}</h3>
@@ -59,10 +66,7 @@
 
         <!--Iframe for displaying structure data test-->
       </div> <!--ResultsDisplay-->
-      <h1>GoogleDataStructuresTest</h1>
     </div>
-
-      <iframe class="myiframe" name={{framename}} ng-src="{{sourcetext | trusted}}" frameborder="0"></iframe>
     </div>
   </body>
 </html>

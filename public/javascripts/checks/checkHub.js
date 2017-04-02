@@ -6,27 +6,27 @@ var _ = require('underscore');
 var check = function(url, callback){
   var redirected = false;
   var html = '';
-  var rulesresult = ' ';
+  var rulesresult;
   var apisresult = ' ';
 
   var returnValues = function(){
-    console.log("SENDING OUT THE RNESULTSOF");
-    console.log(apisresult);
+    console.log("FINAL CALLBACK");
+    console.log("TESTING");
+    console.log(rulesresult);
     var returnobj = {redirected: redirected, rules: rulesresult, apis: apisresult, html: html};
-    console.log("GOTTA GOTTA HERE BUDDY");
     callback(returnobj);
   };
   var finished = _.after(2, returnValues);
-  console.log("RUNINGINGINGING");
 
   httpsRequest(url, function(data){
     redirected = data.redirected;
     html = data.html;
-    rulesresult = rules(html, function(results){
-      rulesresult = results;
+    rules(html, function(results){
+      rulesresult = results.slice();
+      console.log(rulesresult);
       finished();
     });
-    apisresult = apis(url, function(results){
+    apis(url, function(results){
       apisresult = results;
       finished();
     });

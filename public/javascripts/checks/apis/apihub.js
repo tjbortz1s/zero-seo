@@ -21,8 +21,6 @@ var runChecks = function(url, callback){
       finished();
   });
   desktopSpeed(url, function(results){
-      console.log("RETURNING RESULTS OF");
-      console.log(results);
       desktopresults = results;
       finished();
   });
