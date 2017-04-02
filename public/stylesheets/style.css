@@ -29,6 +29,14 @@
     text-align: center;
 }
 
+.passed{
+  color: #00FF00;
+}
+
+.failed{
+    color: #FF0000;
+}
+
 .results{
   position: relative;
   left: 3em;

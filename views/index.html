@@ -33,7 +33,14 @@
         <p ng-click="rulesExpand()" ng-Show="showrulesinfo">Passed: {{ passedrules }}/{{ totalrlues }}</p>
         <div ng-Show="showruleresults">
           <div ng-repeat="item in ruleresults">
-            <h3>{{ item.name }}</h3>
+            <div ng-switch="item.passed">
+              <div ng-switch-when="true">
+                  <h3 class="passed">{{ item.name }}</h3>
+              </div>
+              <div ng-switch-when="false">
+                <h3 class="failed">{{ item.name }}</h3>
+              </div>
+            </div>
             <h4>Did Rule Pass? : {{ item.passed }}</h4>
             <h4>Description:</h4>
             <p class="results">{{ item.description }}</p>
@@ -46,7 +53,12 @@
         <p ng-click="speedExpand()" ng-Show="showspeedinfo">Score: {{ jsonfile.ruleGroups.SPEED.score }}/100 Issues: {{ numissues }}</p>
         <div ng-Show="showspeedresults">
           <div ng-repeat="(key, item) in jsonfile.formattedResults.ruleResults">
-            <h3>{{ item.localizedRuleName }}</h3>
+            <div ng-if="item.ruleImpact > 0">
+              <h3 class="failed">{{ item.localizedRuleName }}</h3>
+            </div>
+            <div ng-if="item.ruleImpact == 0">
+              <h3 class="passed">{{ item.localizedRuleName }}</h3>
+            </div>
             <!-- localizedRuleName, ruleImpact, groups(array)-->
             <h4 class="results">Rule Impact: {{ item.ruleImpact }}</h4>
             <!--<h4>Groups</h4>
