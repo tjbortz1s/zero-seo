@@ -1,28 +1,28 @@
 var htmlToArray = require('../../htmltagsearch.js');
+ 
+ var titleTags= function(html,callback){
+	var pass, description;
+      titleTagArray = htmlToArray(html,'title');
+     if (titleTagArray !== null)
+        numOfTags = titleTagArray.length; 
+     else
+        numOfTags = 0;
 
-var titleTags = function(html,callback){
-    var pass, description;
-    titleTagArray = htmlToArray(html,'title');
-
-    if (titleTagArray !== null)
-      numOfTags = titleTagArray.length;
-    else
-      numOfTags = 0;
-
-    if (numOfTags == 1){
-      pass = true;
-     description = 'There is 1 <title> tag';
-    }
-    else{
+     if (numOfTags == 1){
+        pass = true;
+       description = 'There is 1 <title> tag';
+     }
+      else{ 
       pass = false;
-      description = 'Error: There are '+ numOfTags +' <title> tags'
+      description = 'Error: There are '+ numOfTags +' <title> tags';
     }
-    var returnObj = {
+     var returnObj = {
       name:'Title Check',
-      passed: pass,
+      passed: pass, 
       description : description
-    };
-    callback(returnObj);
+};
+     callback(returnObj);
+	
 }
 
   module.exports = titleTags;
