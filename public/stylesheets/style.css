@@ -29,6 +29,17 @@
     text-align: center;
 }
 
+.bottom{
+  text-decoration-style: wavy;
+  text-decoration: overline;
+  color: #AAAAEE;
+  background-color: #EEEEEE;
+  text-align: center;
+  position: fixed;
+  top: 0%;
+  left: 5%;
+}
+
 .passed{
   color: #00FF00;
 }
