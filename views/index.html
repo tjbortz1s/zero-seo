@@ -29,6 +29,7 @@
 
         <!--Section for rules results, shows HTML for now-->
         <!--Header - loader - displayinfo -->
+
         <h1 ng-click="rulesExpand()" ng-Show="showrulesinfo">Rule Results</h1>
         <p ng-click="rulesExpand()" ng-Show="showrulesinfo">Passed: {{ passedrules }}/{{ totalrlues }}</p>
         <div ng-Show="showruleresults">
@@ -47,11 +48,18 @@
           </div>
         </div>
 
+
+
         <!-- Section for SpeedPageInsights Info-->
         <!--Header - loader - (div)displayinfo -->
         <h1 ng-click="speedExpand()" ng-Show="showspeedinfo">PageSpeed Results</h1>
         <p ng-click="speedExpand()" ng-Show="showspeedinfo">Score: {{ jsonfile.ruleGroups.SPEED.score }}/100 Issues: {{ numissues }}</p>
+        <div ng-Show="showspeedinfo">
+          <p class="selection" ng-click="selectMobile()">Mobile</p>
+          <p class="selection" ng-click="selectDesktop()">Desktop</p>
+        </div>
         <div ng-Show="showspeedresults">
+
           <div ng-repeat="(key, item) in jsonfile.formattedResults.ruleResults">
             <div ng-if="item.ruleImpact > 0">
               <h3 class="failed">{{ item.localizedRuleName }}</h3>
