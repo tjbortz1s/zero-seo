@@ -1,10 +1,11 @@
-var htmlToArray = require('../../htmltagsearch.js');
+var helpers = require('../../htmltagsearch.js');
+var htmlToArray = helpers.htmlToArray;
 
 var h1tags = function(html,callback){
   var pass, description;
-     h1TagArray = htmlToArray(html,'h1') 
+     h1TagArray = htmlToArray(html,'h1')
     if (h1TagArray !== null)
-      numOfTags = h1TagArray.length; 
+      numOfTags = h1TagArray.length;
     else
       numOfTags = 0;
 
@@ -12,13 +13,13 @@ var h1tags = function(html,callback){
       pass = true;
       description = 'There is 1 <h1> tag';
     }
-    else{ 
+    else{
       pass = false;
       description = 'Error: There are '+ numOfTags + ' <h1> tags'
     }
     var returnObj = {
       name:'h1 Check',
-      passed: pass, 
+      passed: pass,
       description : description};
      callback(returnObj);
 }

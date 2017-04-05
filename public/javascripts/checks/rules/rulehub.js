@@ -1,8 +1,11 @@
 var _ = require('underscore');
-var testRule = require('./testRule.js');
 var oneTitleRule = require('./onetitletagrule.js');
 var h1TagsRule = require('./oneh1tagrule.js');
-var imageTagsRule = require('./imagetagsaltrule.js')
+var imageTagsRule = require('./imagetagsaltrule.js');
+var canonicalLinkRule = require('./canonicallinkrule.js');
+var engineTagRule = require('./enginetagrule.js');
+var openGraphRule = require('./opengraphrule.js');
+var twitterTagRule = require('./twittertagrule.js');
 
 var checkRules = function(htmlString, callback){
   var testruleresults = [];
@@ -10,12 +13,8 @@ var checkRules = function(htmlString, callback){
   var returnFunct = function(){
     callback(testruleresults);
   }
-  var finished = _.after(4, returnFunct);
+  var finished = _.after(7, returnFunct);
 
-  testRule(htmlString, function(result){
-    testruleresults.push(result);
-    finished();
-  });
   oneTitleRule(htmlString, function(result){
     testruleresults.push(result);
     finished();
@@ -28,6 +27,22 @@ var checkRules = function(htmlString, callback){
     testruleresults.push(result);
     finished();
   })
+  canonicalLinkRule(htmlString, function(result){
+    testruleresults.push(result);
+    finished();
+  });
+  engineTagRule(htmlString, function(result){
+    testruleresults.push(result);
+    finished();
+  });
+  openGraphRule(htmlString, function(result){
+    testruleresults.push(result);
+    finished();
+  });
+  twitterTagRule(htmlString, function(result){
+    testruleresults.push(result);
+    finished();
+  });
 
 };
 
