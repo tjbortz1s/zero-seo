@@ -1,18 +1,37 @@
 var htmlToArray = function(html,tag) {
+  if (html !== undefined){
  switch(tag){
-  case 'img':
-    regExp = '<' + tag +'.*?>'
-    break;
-  case 'h1':
-    var regExp = '<' + tag + '.*?>.*?</' + tag + '>';
-    break;
-  case 'title':
-    var regExp = '<' + tag + '.*?>.*?</' + tag + '>';
-    break;
-  case 'link':
-    var regExp = '<' + tag + ' rel=".*?".*?>';
-    break;
-}
+   case 'img':
+       regExp = '<' + tag +'.*?>'
+       break;
+     case 'h1':
+       var regExp = '<' + tag + '.*?>.*?</' + tag + '>';
+       break;
+     case 'title':
+       var regExp = '<' + tag + '.*?>.*?</' + tag + '>';
+       break;
+     case 'link':
+       var regExp = '<' + tag + ' rel=".*?".*?>';
+       break;
+     case 'robots':
+     case 'copyright':
+     case 'description':
+     case 'keywords':
+       var regExp = '<meta name="' + tag + '".*?>' ;
+       break;
+     case 'og:title':
+     case 'og:type':
+     case 'og:url':
+     case 'og:image':
+       var regExp = '<meta property="'+tag+'".*?>';
+       break;
+     case 'twitter':
+       var regExp = '<meta name="'+tag+'.*?".*?>';
+     }
+   }
+   else{
+     var html = 'Empty';
+   }
 
   var regex = new RegExp(regExp,'gi');
   metaTagArray = html.match(regex);

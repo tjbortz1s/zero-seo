@@ -24,9 +24,6 @@
   background-color: #FFFFFF;
 }
 
-.selection {
-  font-weight: bold;
-}
 
 .center {
     text-align: center;
@@ -44,7 +41,7 @@
 }
 
 .passed{
-  color: #00FF00;
+  color: #33cc33;
 }
 
 .failed{

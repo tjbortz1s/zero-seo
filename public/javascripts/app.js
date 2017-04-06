@@ -17,38 +17,8 @@ app.controller('myController', function($scope, $http) {
   //this is the only warning show label.
   $scope.redirectstohttps = true;
 
-  $scope.selectMobile = function(){
-    var numissues = 0;
-    var rules = $scope.mobileinfo.formattedResults.ruleResults;
-
-    for(var object in rules){
-      var trueobj = rules[object];
-      if(trueobj.ruleImpact > 0){
-        numissues++;
-      }
-    };
-
-    $scope.numissues = numissues;
-    $scope.jsonfile = $scope.mobileinfo;
-  }
-
-  $scope.selectDesktop = function(){
-    var numissues = 0;
-    var rules = $scope.desktopinfo.formattedResults.ruleResults;
-
-    for(var object in rules){
-      var trueobj = rules[object];
-      if(trueobj.ruleImpact > 0){
-        numissues++;
-      }
-    };
-
-    $scope.numissues = numissues;
-    $scope.jsonfile = $scope.desktopinfo;
-  }
-
   $scope.rulesExpand = function(){
-    console.log("TEST");
+
     $scope.showruleresults = !($scope.showruleresults);
   };
 
@@ -68,7 +38,6 @@ app.controller('myController', function($scope, $http) {
       $scope.showentryinfo = true;
       $scope.showloader = true;
 
-      console.log("SETTING SOURCE TEXT");
       $scope.framename = 'test';
 
       //begin the API requests
@@ -112,8 +81,6 @@ app.controller('myController', function($scope, $http) {
 
         $scope.showspeedinfo = true;
         $scope.jsonfile = data.apis.desktopspeed;
-        $scope.desktopinfo = data.apis.desktopspeed;
-        $scope.mobileinfo = data.apis.mobilespeed;
         $scope.showloader = false;
       });
 

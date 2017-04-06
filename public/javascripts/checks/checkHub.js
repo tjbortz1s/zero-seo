@@ -10,9 +10,7 @@ var check = function(url, callback){
   var apisresult = ' ';
 
   var returnValues = function(){
-    console.log("FINAL CALLBACK");
-    console.log("TESTING");
-    console.log(rulesresult);
+
     var returnobj = {redirected: redirected, rules: rulesresult, apis: apisresult, html: html};
     callback(returnobj);
   };
@@ -23,18 +21,14 @@ var check = function(url, callback){
     html = data.html;
     rules(html, function(results){
       rulesresult = results.slice();
-      console.log(rulesresult);
+
       finished();
     });
     apis(url, function(results){
       apisresult = results;
       finished();
     });
-    //console.log('is data here?');
-    //console.log(https);
-    //console.log(html);
 
-    //callback(data);
   });
 
 }

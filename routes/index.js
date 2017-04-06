@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   //res.render('index', null);
   //converted to angular html serving
   var thePath = path.join(__dirname, '../', 'views', 'index.html')
-  console.log(thePath);
+
   res.sendFile(thePath);
 });
 
@@ -24,8 +24,7 @@ router.post('/api/runChecks', function(req, res, next) {
     var url = req.body.url;
     check(url, function(data){
       console.log('GETTING API RESULTS FOR DESKTOPSPEED');
-      console.log(data.rules);
-      res.json(data);
+       res.json(data);
     });
 });
 

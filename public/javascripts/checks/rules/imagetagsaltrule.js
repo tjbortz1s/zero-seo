@@ -26,7 +26,7 @@ var imageTags = function(html,callback){
       description = 'All "<img =" tags contain an alt text'
     }
     else if (noImageTagsFlag == true){
-      pass = false;
+      pass = true;
       description = 'Warning: Page contains 0 image tags.';
 
     }

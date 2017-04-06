@@ -5,7 +5,7 @@ var pageInsightsQuery = function(url, callback){
 
   var getURL = function(url) {
     var theURL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url='+url+'&strategy=mobile'+'&key='+apikey;
-    console.log("URL: " + theURL);
+    
 		return theURL;
 	}
 	if(url != "") {

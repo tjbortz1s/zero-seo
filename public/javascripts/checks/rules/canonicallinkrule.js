@@ -26,7 +26,7 @@ if (numTagsWithCanonical == 1 && noLinkTagsFlag != true){
   description = 'There are ' + numOfTags + ' link tags and '+ numTagsWithCanonical +' has "rel=canonical".';
 }
 else if( noLinkTagsFlag == true){
-  pass = false;
+  pass = true;
   description = 'Warning: There are no link tags';
 }
 else{
