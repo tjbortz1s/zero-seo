@@ -51,7 +51,12 @@
         <!--Header - loader - (div)displayinfo -->
         <h1 ng-click="speedExpand()" ng-Show="showspeedinfo">Page Speed Results</h1>
         <p ng-click="speedExpand()" ng-Show="showspeedinfo">Score: {{ jsonfile.ruleGroups.SPEED.score }}/100 Issues: {{ numissues }}</p>
-        <div ng-Show="showspeedresults">
+        <div ng-Show="showspeedinfo">
+          <p class="selection" ng-click="selectMobile()">Mobile</p>
+          <p class="selection" ng-click="selectDesktop()">Desktop</p>
+        </div>
+
+	   <div ng-Show="showspeedresults">
           <div ng-repeat="(key, item) in jsonfile.formattedResults.ruleResults">
             <div ng-if="item.ruleImpact > 0">
               <h3 class="failed">{{ item.localizedRuleName }}</h3>
