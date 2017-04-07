@@ -4,6 +4,9 @@ app.controller('myController', function($scope, $http) {
   $scope.text = "https://www.google.com";
   $scope.jsonfile = "";
 
+  $scope.pagespeedheadertext = "+ Page Speed Results";
+  $scope.resultsheadertext = "+ Meta Tag Checks";
+
   $scope.showentrybox = true;
   //before anything is loaded nothing should be shown
   $scope.showspeedinfo = false;
@@ -17,8 +20,13 @@ app.controller('myController', function($scope, $http) {
   //this is the only warning show label.
   $scope.redirectstohttps = true;
 
+  $scope.selectmobilecss = {'background-color': '#FFFFFF', 'text-align': 'center'};
+  $scope.selectdesktopcss = {'background-color': '#EEEEFF', 'text-align': 'center'};
+
 
   $scope.selectMobile = function(){
+    $scope.selectmobilecss = {'background-color': '#EEEEFF', 'text-align': 'center'};
+    $scope.selectdesktopcss = {'background-color': '#FFFFFF', 'text-align': 'center'};
     var numissues = 0;
     var rules = $scope.mobileinfo.formattedResults.ruleResults;
 
@@ -34,6 +42,8 @@ app.controller('myController', function($scope, $http) {
   }
 
   $scope.selectDesktop = function(){
+    $scope.selectmobilecss = {'background-color': '#FFFFFF', 'text-align': 'center'};
+    $scope.selectdesktopcss = {'background-color': '#EEEEFF', 'text-align': 'center'};
     var numissues = 0;
     var rules = $scope.desktopinfo.formattedResults.ruleResults;
 
@@ -50,11 +60,23 @@ app.controller('myController', function($scope, $http) {
 
 
   $scope.rulesExpand = function(){
-
+    if($scope.resultsheadertext.charAt(0) == '+'){
+      $scope.resultsheadertext = "- Meta Tag Checks";
+    }
+    else{
+      $scope.resultsheadertext = "+ Meta Tag Checks";
+    }
+      
     $scope.showruleresults = !($scope.showruleresults);
   };
 
   $scope.speedExpand = function(){
+    if($scope.pagespeedheadertext.charAt(0) == '+'){
+      $scope.pagespeedheadertext = "- Page Speed Results";
+    }
+    else{
+      $scope.pagespeedheadertext = "+ Page Speed Results";
+    }
     $scope.showspeedresults = !($scope.showspeedresults);
   };
 
@@ -73,10 +95,11 @@ app.controller('myController', function($scope, $http) {
       $scope.framename = 'test';
 
       //begin the API requests
-      var testReq = $http.post('/api/runChecks', {'url': $scope.text});
+      var url = $scope.text;
+      var testReq = $http.post('/api/runChecks', {'url': url});
       //request for the rules
       testReq.success(function(data){
-
+        $scope.url = url;
         $scope.pagehtml = data.html;
         $scope.ruleresults = data.rules;
 
@@ -87,7 +110,7 @@ app.controller('myController', function($scope, $http) {
             passedrules++;
           }
         }
-        $scope.totalrlues = data.rules.length;
+        $scope.totalrules = data.rules.length;
         $scope.passedrules = passedrules;
 
         $scope.showrulesinfo = true;

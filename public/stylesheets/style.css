@@ -15,6 +15,12 @@
   display: block;
 }
 
+.url {
+  text-align: center;
+  font-size: 16pt;
+  color: #333333;
+}
+
 .body {
   margin: auto;
   width: 50%;
@@ -22,6 +28,10 @@
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #FFFFFF;
+}
+
+.selectiontable{
+  width: 15em;
 }
 
 .selection {
