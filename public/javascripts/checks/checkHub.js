@@ -2,6 +2,7 @@ var rules = require('./rules/rulehub.js');
 var apis = require('./apis/apihub.js');
 var httpsRequest = require('./httpsrequest.js');
 var _ = require('underscore');
+var test = require('../argreplace.js');
 
 var check = function(url, callback){
   var redirected = false;
@@ -10,7 +11,7 @@ var check = function(url, callback){
   var apisresult = ' ';
 
   var returnValues = function(){
-
+    test(apisresult.desktopspeed);
     var returnobj = {redirected: redirected, rules: rulesresult, apis: apisresult, html: html};
     callback(returnobj);
   };

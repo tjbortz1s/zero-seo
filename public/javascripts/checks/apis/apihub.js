@@ -9,8 +9,7 @@ var runChecks = function(url, callback){
   var structureresults = false;
 
   var returnFunct = function(){
-    var results = {mobilespeed: mobileresults, desktopspeed: desktopresults,
-    structuretest: structureresults};
+    var results = {mobilespeed: mobileresults, desktopspeed: desktopresults};
     callback(results);
   }
   var finished = _.after(2, returnFunct);

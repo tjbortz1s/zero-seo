@@ -1,7 +1,7 @@
 var app = angular.module('seoApp', []);
 
 app.controller('myController', function($scope, $http) {
-  $scope.text = "https://www.google.com";
+  $scope.text = "https://www.vintagesoftware.com";
   $scope.jsonfile = "";
 
   $scope.pagespeedheadertext = "+ Page Speed Results";
@@ -66,7 +66,7 @@ app.controller('myController', function($scope, $http) {
     else{
       $scope.resultsheadertext = "+ Meta Tag Checks";
     }
-      
+
     $scope.showruleresults = !($scope.showruleresults);
   };
 
@@ -86,6 +86,7 @@ app.controller('myController', function($scope, $http) {
     //have a module to check if URL is valid
     //in the future
     if($scope.text) {
+
       //show the headers
       //and the loaders
       $scope.showentrybox = false;

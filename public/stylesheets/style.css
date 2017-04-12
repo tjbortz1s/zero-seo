@@ -1,20 +1,3 @@
-.myiframe {
-  position: relative;
-  top: 50px;
-  left: 0px;
-  bottom: 0px;
-  right: 0px;
-  width: 100%;
-  height: 50em;
-  margin: auto;
-  max-width: 80%;
-  border: 0;
-  padding: 2em;
-  overflow: hidden;
-  z-index: 999999;
-  display: block;
-}
-
 .url {
   text-align: center;
   font-size: 16pt;

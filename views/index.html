@@ -29,7 +29,7 @@
         <!--Header - loader - displayinfo -->
         <p class="url" ng-Show="showrulesinfo">{{ url }}<p>
         <h1 ng-click="rulesExpand()" ng-Show="showrulesinfo">{{ resultsheadertext }}</h1>
-        <p ng-click="rulesExpand()" ng-Show="showrulesinfo">Passed: {{ passedrules }}/{{ totalrules }}</p>
+        <p ng-Show="showrulesinfo">Passed: {{ passedrules }}/{{ totalrules }}</p>
         <div ng-Show="showruleresults">
           <div ng-repeat="item in ruleresults">
             <div ng-switch="item.passed">
@@ -43,13 +43,14 @@
             <h4>Did Rule Pass? : {{ item.passed }}</h4>
             <h4>Description:</h4>
             <p class="results" > {{ item.description }}</p><br>
+            <hr>
           </div>
         </div>
 
         <!-- Section for SpeedPageInsights Info-->
         <!--Header - loader - (div)displayinfo -->
         <h1 ng-click="speedExpand()" ng-Show="showspeedinfo">{{ pagespeedheadertext }}</h1>
-        <p ng-click="speedExpand()" ng-Show="showspeedinfo">Score: {{ jsonfile.ruleGroups.SPEED.score }}/100 Issues: {{ numissues }}</p>
+        <p ng-Show="showspeedinfo">Score: {{ jsonfile.ruleGroups.SPEED.score }}/100 Issues: {{ numissues }}</p>
         <div ng-Show="showspeedinfo">
         <table class="selectiontable">
           <tr>
@@ -79,6 +80,7 @@
             <h4 class="results">Summary</h4>
             <p class="results">{{item.summary.format}}</p>
             <br>
+            <hr>
             <!--<h5>Arguments</h5>
             <ul ng-repeat="(key2, item2) in item.summary.args">
                 <li><b>{{ key2 }}:</b>  {{ item2 }}</li>
