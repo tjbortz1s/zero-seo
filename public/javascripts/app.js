@@ -86,6 +86,22 @@ app.controller('myController', function($scope, $http) {
     $scope.showspeedresults = !($scope.showspeedresults);
   };
 
+  $scope.resetPage = function() {
+    $scope.showrulesinfo = false;
+    $scope.showentrybox = true;
+    $scope.showentryinfo = false;
+    $scope.showloader = false;
+    $scope.showspeedinfo = false;
+
+    $scope.pagespeedheadertext = "+ Page Speed Results";
+    $scope.showspeedresults = false;
+
+    $scope.resultsheadertext = "- Meta Tag Checks";
+    $scope.showruleresults = false;
+
+    $scope.text = $scope.url;
+  };
+
   //on button click to start up the process
   $scope.submit = function() {
     //if a URL was input
@@ -103,9 +119,20 @@ app.controller('myController', function($scope, $http) {
 
       //begin the API requests
       var url = $scope.text;
-      var testReq = $http.post('/api/runChecks', {'url': url});
+      var checkRequest = $http.post('/api/runChecks', {'url': url});
+
+      checkRequest.error(function(data){
+        $scope.resetPage();
+      });
       //request for the rules
-      testReq.success(function(data){
+      checkRequest.success(function(data){
+        if(data == null){
+          if(!$scope.url || $scope.url == ""){
+            $scope.url = "https://www.vintagesoftware.com";
+          }
+          $scope.resetPage();
+          return;
+        }
         $scope.url = url;
         $scope.pagehtml = data.html;
         $scope.ruleresults = data.rules;

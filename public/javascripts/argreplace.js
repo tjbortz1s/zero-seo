@@ -20,11 +20,9 @@ var fun = function(object){
   //now, with these two expressions, loop through each rule result format string
   for(var key in object.formattedResults.ruleResults){
     theobject = object.formattedResults.ruleResults[key];
-    console.log(theobject.summary.format);
     //now we make the two arrays
     var beginTags = theobject.summary.format.match(regExpFindBegin);
     var valueTags = theobject.summary.format.match(regExpFindTags);
-    //for debug, console.log the arrays
     //if there were begin tags
     if(beginTags != null){
       //strip the BEGIN_ and the {{}}
@@ -33,8 +31,6 @@ var fun = function(object){
         var stripString = value.substring(8, value.length-2);
         strippedBeginTags.push(stripString);
       });
-      //log for debug;
-      console.log("StrippedBegin:  " + strippedBeginTags);
       //for each of the new tags
       strippedBeginTags.forEach(function(thevalue){
         //first, get the full string of the tag that is being replaced
@@ -64,7 +60,6 @@ var fun = function(object){
             //now create the string it will be replaced with
             var replaceString = "<a href=\"" + retVal + "\" >" + betweenString + "</a>";
             var foundString = theobject.summary.format.match(regExpFindReplaceText);
-            console.log("REPLACING ", foundString, " WITH ", replaceString);
             theobject.summary.format = theobject.summary.format.replace(regExpFindReplaceText, replaceString);
           });
 
@@ -90,9 +85,7 @@ var fun = function(object){
           //arrayobject.key
           //arrayobject.value
           findArgValue(theobject.summary.args, thevalue, function(retVal){
-            console.log("FOUND THIS HERE GUY" + retVal + " FROM " + thevalue);
             var stringArgSearch = "{{" + thevalue + "}}";
-            console.log("REGEX IS", stringArgSearch);
             var regExpArgSearch = new RegExp(stringArgSearch, 'g');
             theobject.summary.format = theobject.summary.format.replace(regExpArgSearch, retVal);
           });
