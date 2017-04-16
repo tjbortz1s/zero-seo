@@ -1,5 +1,11 @@
 var app = angular.module('seoApp', []);
 
+app.filter('unsafe', function($sce){
+  return function(value){
+    return $sce.trustAsHtml(value);
+  }
+});
+
 app.controller('myController', function($scope, $http) {
   $scope.text = "https://www.vintagesoftware.com";
   $scope.jsonfile = "";

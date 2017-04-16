@@ -78,7 +78,7 @@
               <li>{{ item2 }}</li>
             </ul> -->
             <h4 class="results">Summary</h4>
-            <p class="results">{{item.summary.format}}</p>
+            <p class="results" ng-bind-html="item.summary.format | unsafe"></p>
             <br>
             <hr>
             <!--<h5>Arguments</h5>
