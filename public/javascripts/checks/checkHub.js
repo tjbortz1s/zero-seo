@@ -11,10 +11,19 @@ var check = function(url, callback){
   var apisresult = ' ';
 
   var returnValues = function(){
-    test(apisresult.desktopspeed);
-    test(apisresult.mobilespeed);
-    var returnobj = {redirected: redirected, rules: rulesresult, apis: apisresult, html: html};
-    callback(returnobj);
+    console.log("ERROR SEARCH");
+    console.log(apisresult.mobilespeed.error);
+    console.log("ERROR HTML?");
+    console.log(html);
+    if(apisresult.mobilespeed.error || apisresult.desktopspeed.error || !html){
+      callback(null);
+    }
+    else{
+      test(apisresult.desktopspeed);
+      test(apisresult.mobilespeed);
+      var returnobj = {redirected: redirected, rules: rulesresult, apis: apisresult, html: html};
+      callback(returnobj);
+    }
   };
   var finished = _.after(2, returnValues);
 

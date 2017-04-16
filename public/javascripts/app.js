@@ -119,9 +119,17 @@ app.controller('myController', function($scope, $http) {
 
       //begin the API requests
       var url = $scope.text;
-      var testReq = $http.post('/api/runChecks', {'url': url});
+      var checkRequest = $http.post('/api/runChecks', {'url': url});
+
+      checkRequest.error(function(data){
+        $scope.resetPage();
+      });
       //request for the rules
-      testReq.success(function(data){
+      checkRequest.success(function(data){
+        if(data == null){
+          $scope.resetPage();
+          return;
+        }
         $scope.url = url;
         $scope.pagehtml = data.html;
         $scope.ruleresults = data.rules;
