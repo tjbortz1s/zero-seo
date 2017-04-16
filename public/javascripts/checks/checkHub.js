@@ -12,7 +12,6 @@ var check = function(url, callback){
 
   var returnValues = function(){
     test(apisresult.desktopspeed);
-    test(apisresult.mobilespeed);
     var returnobj = {redirected: redirected, rules: rulesresult, apis: apisresult, html: html};
     callback(returnobj);
   };
