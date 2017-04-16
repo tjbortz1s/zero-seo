@@ -24,6 +24,8 @@
 
         <div class="loader" ng-Show="showloader"></div>
 
+        <!--Return Button -->
+        <p class="reset" ng-show="showrulesinfo" ng-click="resetPage()">Return</p>
         <!--Various Warnings -->
         <p class="warning" ng-Hide="redirectstohttps">Site did not redirect to HTTPS</p>
         <!--Header - loader - displayinfo -->
@@ -42,7 +44,7 @@
             </div>
             <h4>Did Rule Pass? : {{ item.passed }}</h4>
             <h4>Description:</h4>
-            <p class="results" > {{ item.description }}</p><br>
+            <p class="results"> {{ item.description }}</p><br>
             <hr>
           </div>
         </div>

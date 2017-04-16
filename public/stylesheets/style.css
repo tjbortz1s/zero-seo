@@ -4,6 +4,8 @@
   color: #333333;
 }
 
+
+
 .body {
   margin: auto;
   width: 50%;
@@ -32,8 +34,15 @@
   background-color: #EEEEEE;
   text-align: center;
   position: fixed;
-  top: 0%;
+  top: 90%;
   left: 5%;
+}
+
+.reset{
+  position: fixed;
+  background-color: #EEEEEE;
+  top: 10%;
+  left: 20%;
 }
 
 .passed{

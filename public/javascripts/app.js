@@ -86,6 +86,22 @@ app.controller('myController', function($scope, $http) {
     $scope.showspeedresults = !($scope.showspeedresults);
   };
 
+  $scope.resetPage = function() {
+    $scope.showrulesinfo = false;
+    $scope.showentrybox = true;
+    $scope.showentryinfo = false;
+    $scope.showloader = false;
+    $scope.showspeedinfo = false;
+
+    $scope.pagespeedheadertext = "+ Page Speed Results";
+    $scope.showspeedresults = false;
+
+    $scope.resultsheadertext = "- Meta Tag Checks";
+    $scope.showruleresults = false;
+
+    $scope.text = $scope.url;
+  };
+
   //on button click to start up the process
   $scope.submit = function() {
     //if a URL was input
