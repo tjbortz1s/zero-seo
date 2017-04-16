@@ -127,6 +127,9 @@ app.controller('myController', function($scope, $http) {
       //request for the rules
       checkRequest.success(function(data){
         if(data == null){
+          if(!$scope.url || $scope.url == ""){
+            $scope.url = "https://www.vintagesoftware.com";
+          }
           $scope.resetPage();
           return;
         }
