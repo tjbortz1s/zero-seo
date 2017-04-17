@@ -98,7 +98,7 @@ app.controller('myController', function($scope, $http) {
     $scope.pagespeedheadertext = "+ Page Speed Results";
     $scope.showspeedresults = false;
 
-    $scope.resultsheadertext = "- Meta Tag Checks";
+    $scope.resultsheadertext = "+ Meta Tag Checks";
     $scope.showruleresults = false;
 
     $scope.text = $scope.url;
