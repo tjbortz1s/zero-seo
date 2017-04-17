@@ -34,6 +34,7 @@
         <h1 ng-click="rulesExpand()" ng-Show="showrulesinfo">{{ resultsheadertext }}</h1>
         <p ng-Show="showrulesinfo">Passed: {{ passedrules }}/{{ totalrules }}</p>
         <div ng-Show="showruleresults">
+
           <div ng-repeat="item in ruleresults">
             <div ng-switch="item.passed">
               <div ng-switch-when="true">

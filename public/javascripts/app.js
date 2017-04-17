@@ -94,6 +94,7 @@ app.controller('myController', function($scope, $http) {
     $scope.showentryinfo = false;
     $scope.showloader = false;
     $scope.showspeedinfo = false;
+    $scope.redirectstohttps = true;
 
     $scope.pagespeedheadertext = "+ Page Speed Results";
     $scope.showspeedresults = false;
@@ -110,7 +111,14 @@ app.controller('myController', function($scope, $http) {
     //have a module to check if URL is valid
     //in the future
     if($scope.text) {
-
+      //"{{(?!BEGIN_)(?!END_).*?}}"
+      var stringURLCheck = "http.?://.*";
+      var regExpURLCheck = new RegExp(stringURLCheck);
+      if($scope.text.search(regExpURLCheck) == -1){
+        console.log("AHHHHHHHHHH");
+        $scope.text = "http://" + $scope.text;
+        console.log("NEWURL", $scope.text);
+      }
       //show the headers
       //and the loaders
       $scope.showentrybox = false;
@@ -123,6 +131,10 @@ app.controller('myController', function($scope, $http) {
       var checkRequest = $http.post('/api/runChecks', {'url': url});
 
       checkRequest.error(function(data){
+        if(!$scope.url || $scope.url == ""){
+          $scope.url = "https://www.vintagesoftware.com";
+        }
+        $scope.showURLwarning = true;
         $scope.resetPage();
       });
       //request for the rules
