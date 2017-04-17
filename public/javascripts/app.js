@@ -26,6 +26,8 @@ app.controller('myController', function($scope, $http) {
   //this is the only warning show label.
   $scope.redirectstohttps = true;
 
+  $scope.showURLwarning = false;
+
   $scope.selectmobilecss = {'background-color': '#FFFFFF', 'text-align': 'center'};
   $scope.selectdesktopcss = {'background-color': '#EEEEFF', 'text-align': 'center'};
 
@@ -114,7 +116,6 @@ app.controller('myController', function($scope, $http) {
       $scope.showentrybox = false;
       $scope.showentryinfo = true;
       $scope.showloader = true;
-
       $scope.framename = 'test';
 
       //begin the API requests
@@ -130,9 +131,11 @@ app.controller('myController', function($scope, $http) {
           if(!$scope.url || $scope.url == ""){
             $scope.url = "https://www.vintagesoftware.com";
           }
+          $scope.showURLwarning = true;
           $scope.resetPage();
           return;
         }
+        $scope.showURLwarning = false;
         $scope.url = url;
         $scope.pagehtml = data.html;
         $scope.ruleresults = data.rules;
