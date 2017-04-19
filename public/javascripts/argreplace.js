@@ -20,7 +20,13 @@ var fun = function(object){
   //now, with these two expressions, loop through each rule result format string
   for(var key in object.formattedResults.ruleResults){
     theobject = object.formattedResults.ruleResults[key];
+    console.log("object?");
+    console.log(theobject);
     //now we make the two arrays
+    if(theobject.summary.format){
+      //sometimes this doesn't exist, just skip
+      break;
+    }
     var beginTags = theobject.summary.format.match(regExpFindBegin);
     var valueTags = theobject.summary.format.match(regExpFindTags);
     //if there were begin tags

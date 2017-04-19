@@ -11,10 +11,6 @@ var check = function(url, callback){
   var apisresult = ' ';
 
   var returnValues = function(){
-    console.log("ERROR SEARCH");
-    console.log(apisresult.mobilespeed.error);
-    console.log("ERROR HTML?");
-    console.log(html);
     if(apisresult.mobilespeed.error || apisresult.desktopspeed.error || !html){
       callback(null);
     }
