@@ -25,7 +25,7 @@ var fun = function(object){
     //now we make the two arrays
     if(!theobject.summary || !theobject.summary.format){
       //sometimes this doesn't exist, just skip
-      break;
+      continue;
     }
     var beginTags = theobject.summary.format.match(regExpFindBegin);
     var valueTags = theobject.summary.format.match(regExpFindTags);
