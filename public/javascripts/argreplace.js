@@ -23,7 +23,7 @@ var fun = function(object){
     console.log("object?");
     console.log(theobject);
     //now we make the two arrays
-    if(theobject.summary.format){
+    if(!theobject.summary || !theobject.summary.format){
       //sometimes this doesn't exist, just skip
       break;
     }
