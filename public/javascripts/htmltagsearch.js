@@ -5,10 +5,10 @@ var htmlToArray = function(html,tag) {
        regExp = '<' + tag +'.*?>'
        break;
      case 'h1':
-       var regExp = '<' + tag + '.*?>.*?</' + tag + '>';
+       var regExp = '<' + tag + '.*?>(.|\\s)*?</' + tag + '>';
        break;
      case 'title':
-       var regExp = '<' + tag + '.*?>.*?</' + tag + '>';
+       var regExp = '<' + tag + '.*?>(.|\\s)*?</' + tag + '>';
        break;
      case 'link':
        var regExp = '<' + tag + ' rel=".*?".*?>';
@@ -32,9 +32,10 @@ var htmlToArray = function(html,tag) {
    else{
      var html = 'Empty';
    }
-
+  console.log(regExp);
   var regex = new RegExp(regExp,'gi');
   metaTagArray = html.match(regex);
+  console.log(metaTagArray);
   return metaTagArray;
 };
 
