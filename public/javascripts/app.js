@@ -96,6 +96,9 @@ app.controller('myController', function($scope, $http) {
     $scope.showspeedinfo = false;
     $scope.redirectstohttps = true;
 
+    $scope.selectmobilecss = {'background-color': '#FFFFFF', 'text-align': 'center'};
+    $scope.selectdesktopcss = {'background-color': '#EEEEFF', 'text-align': 'center'};
+
     $scope.pagespeedheadertext = "+ Page Speed Results";
     $scope.showspeedresults = false;
 
